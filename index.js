@@ -1,19 +1,18 @@
 const env = require('dotenv').config().parsed;
+const token = env.ACTUAL_BOT_TOKEN;
+const botName = env.ACTUAL_BOT_NAME;
 
 const SlackBot = require("slackbots");
-const channel = "general"
-
-const token = env.ACTUAL_BOT_TOKEN;
 
 const bot = new SlackBot({
   token: token,
-  name: "hollybot"
+  name: botName
 });
 
 bot.on("message", function(data) {
-  if (data.type == 'message' && data.username !== 'hollybot') {
+  if (data.type == 'message' && data.username !== botName) {
     if (data.text == 'hello') {
-      bot.postMessageToChannel(channel, 'yeah, whatever.');
+      bot.postMessage(data.channel, 'yeah, whatever.');
     }
   }
 });
