@@ -13,7 +13,7 @@ const env = require('dotenv').config().parsed;
 const token = env.TEST_BOT_TOKEN;
 const botName = env.TEST_BOT_NAME;
 const testChannel = env.TEST_CHANNEL;
-
+const actualBotName = env.ACTUAL_BOT_NAME;
 let bot;
 
 After( () => {
@@ -34,8 +34,10 @@ When('I say {string}', async function (message) {
 Then('Hollybot should reply with {string}', function (expectedMessage, done) {
   bot.on('message', function(data) {
     if (data.type == 'message' && data.username !== botName) {
-      expect(data.text).to.equal(expectedMessage);
-      done();
+      if (data.username == actualBotName) {
+        expect(data.text).to.equal(expectedMessage);
+        done();
+      }
     }
   });
 });
