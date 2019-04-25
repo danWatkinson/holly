@@ -4,7 +4,8 @@
   "description": "Holly the holiday booking robot",
   "main": "index.js",
   "scripts": {
-    "test": "cucumber-js"
+    "test": "cucumber-js",
+    "start": "node ./index.js"
   },
   "author": "",
   "license": "ISC",

@@ -10,10 +10,8 @@ const SlackBot = require('slackbots');
 
 const env = require('dotenv').config().parsed;
 
-const token = env.TEST_BOT_TOKEN;
-const botName = env.TEST_BOT_NAME;
-const testChannel = env.TEST_CHANNEL;
-const actualBotName = env.ACTUAL_BOT_NAME;
+const {TEST_BOT_TOKEN, TEST_BOT_NAME, TEST_CHANNEL, BOT_NAME} = env
+
 let bot;
 
 After( () => {
@@ -22,22 +20,20 @@ After( () => {
 
 Given('I am connected to Slack', function () {
   bot = new SlackBot({
-      token,
-      name: botName
+      token: TEST_BOT_TOKEN,
+      name: TEST_BOT_NAME
   });
 });
 
 When('I say {string}', async function (message) {
-  await bot.postMessageToChannel(testChannel, message);
+  await bot.postMessageToChannel(TEST_CHANNEL, message);
 });
 
 Then('Hollybot should reply with {string}', function (expectedMessage, done) {
   bot.on('message', function(data) {
-    if (data.type == 'message' && data.username !== botName) {
-      if (data.username == actualBotName) {
-        expect(data.text).to.equal(expectedMessage);
-        done();
-      }
+    if (data.type == 'message' && data.username == BOT_NAME) {
+      expect(data.text).to.equal(expectedMessage);
+      done();
     }
   });
 });
