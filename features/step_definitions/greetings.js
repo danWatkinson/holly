@@ -12,6 +12,7 @@ const env = require('dotenv').config().parsed;
 
 const token = env.TEST_BOT_TOKEN;
 const botName = env.TEST_BOT_NAME;
+const testChannel = env.TEST_CHANNEL;
 
 let bot;
 
@@ -27,7 +28,7 @@ Given('I am connected to Slack', function () {
 });
 
 When('I say {string}', async function (message) {
-  await bot.postMessageToChannel('general', message);
+  await bot.postMessageToChannel(testChannel, message);
 });
 
 Then('Hollybot should reply with {string}', function (expectedMessage, done) {
