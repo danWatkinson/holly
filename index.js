@@ -1,7 +1,5 @@
-const env = require('dotenv').config().parsed;
-const {BOT_TOKEN, BOT_NAME} = env
-
 const SlackBot = require("slackbots");
+const {BOT_TOKEN, BOT_NAME} = require('dotenv').config().parsed;
 
 const bot = new SlackBot({
   token: BOT_TOKEN,

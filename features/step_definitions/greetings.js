@@ -1,16 +1,8 @@
-const chai = require('chai');
-const assertArrays = require('chai-arrays');
-const chaiString = require('chai-string');
-chai.use(assertArrays);
-chai.use(chaiString);
-const expect = chai.expect;
-
 const { Before, Given, When, Then, After } = require('cucumber');
+const expect = require('./expect');
+
 const SlackBot = require('slackbots');
-
-const env = require('dotenv').config().parsed;
-
-const {TEST_BOT_TOKEN, TEST_BOT_NAME, TEST_CHANNEL, BOT_NAME} = env
+const {TEST_BOT_TOKEN, TEST_BOT_NAME, TEST_CHANNEL, BOT_NAME} = require('dotenv').config().parsed;
 
 let bot;
 
