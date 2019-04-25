@@ -1,0 +1,19 @@
+{
+  "name": "holly",
+  "version": "1.0.0",
+  "description": "Holly the holiday booking robot",
+  "main": "index.js",
+  "scripts": {
+    "test": "cucumber-js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "chai-arrays": "^2.0.0",
+    "chai-string": "^1.5.0",
+    "cucumber": "^5.1.0",
+    "dotenv": "^7.0.0",
+    "slackbots": "^1.2.0"
+  }
+}
